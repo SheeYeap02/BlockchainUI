@@ -1,0 +1,225 @@
+.durian-wrapper {
+  height: 100vh;
+  position: relative;
+  margin: 100px 50px;
+  /* background-color: #ccc5b9; */
+}
+
+.durian-card {
+  max-width: 65rem;
+  position: relative;
+  display: flex;
+  top: 50%;
+  left: 50%;
+  border-radius: 50px;
+  transform: translate(-50%, -50%);
+  box-shadow: -2rem 2rem 3.2rem rgba(0, 0, 0, 0.2);
+}
+
+.durian-left {
+  height: 80%;
+  width: 70%;
+  padding: 0rem 2rem 2rem 2rem;
+  border-top-left-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  background: #d7eed1;
+  color: #000;
+  border-radius: 20px;
+}
+
+.durian-right {
+  background: #fff;
+  height: auto;
+  width: 100%;
+  border-top-right-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 120px;
+}
+
+.durian-right img {
+  height: 31rem;
+  width: 35rem;
+}
+
+.durian-header h1 {
+  text-transform: uppercase;
+  margin: 2rem 0;
+  font-size: 2.5rem;
+}
+
+/* Price */
+
+.durian-header h2 {
+  margin: 0rem 0 2rem 0;
+  font-weight: 300;
+}
+
+/* durian Description */
+
+.durian-main p {
+  opacity: 0.5;
+  margin: 2rem 0;
+  line-height: 1.45;
+}
+
+.focus {
+  text-transform: uppercase;
+  margin: 0 0 1rem 0;
+  padding: 0 0 0.9rem 0;
+  border-bottom: 0.2rem solid rgba(250, 250, 250, 0.3);
+}
+
+.focus span:last-child {
+  margin: 0 0 0 1rem;
+  width: 100%;
+}
+
+.focus span:first-child {
+  border-bottom: 0.2rem solid #fff;
+  padding: 0 0 0.9rem 0;
+}
+
+/* Choose color / quantity  */
+
+.btns-group {
+  width: 100%;
+  margin: 0 0 2rem 0;
+}
+
+/* Total Price  */
+
+.durian-total {
+  margin: 0 0 2rem 0;
+}
+
+.durian-total p {
+  font-weight: 700;
+  font-size: 2rem;
+  opacity: 0.5;
+}
+
+.durian-total h3 {
+  margin: 0 0 1rem 0;
+}
+
+/* Add to cart button  */
+
+.durian-add {
+  border: 1px solid #fff;
+  width: 100%;
+  padding: 1.5rem;
+  border-radius: 5rem;
+  transition: all 0.5s ease-out;
+}
+
+.durian-add:hover {
+  background-color: #358d58;
+  border: 2px solid rgb(32, 34, 32);
+  color: #fff;
+}
+
+.durian-btns a {
+  text-decoration: none;
+  color: #000;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  border: 2px solid green;
+  justify-content: center;
+  width: 250px;
+  margin-left: 60px;
+  height: 80px;
+}
+
+/* Rating Star Widgets Style */
+.product-rating {
+  text-align: center;
+  margin-top: 12px;
+  color: #fedf00;
+}
+
+/* Rating Star Widgets Style */
+.rating-stars {
+  margin-top: 12px;
+}
+
+.rating-stars ul {
+  list-style-type: none;
+  padding: 0;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+}
+.rating-stars ul > li.star {
+  display: inline-block;
+}
+
+/* Idle State of the stars */
+.rating-stars ul > li.star > i.fa {
+  font-size: 1.5em; /* Change the size of the stars */
+  color: #ccc; /* Color on idle state */
+}
+
+/* Hover state of the stars */
+.rating-stars ul > li.star.hover > i.fa {
+  color: #ffcc36;
+}
+
+/* Selected state of the stars */
+.rating-stars ul > li.star.selected > i.fa {
+  color: #ff912c;
+}
+
+.popup {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+  
+  .popup-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px;
+    position: relative;
+  }
+  
+  .close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  #submit {
+    display: block;
+    margin: auto;
+  }
+
+  .show {
+    display: block;
+  }
