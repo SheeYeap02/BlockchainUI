@@ -60,8 +60,8 @@ body::-webkit-scrollbar-thumb {
 
 .back-to-top:hover {
     color: #000;
-    background-color: #749d6b;
-    border-color: #6b9862;
+    background-color: #749d6b !important;
+    border-color: #6b9862 !important;
 }
 
 .btn-square {
