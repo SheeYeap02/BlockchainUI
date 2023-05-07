@@ -103,7 +103,7 @@ body::-webkit-scrollbar-thumb {
   font-weight: normal !important;
   font-variant: normal;
   text-transform: none;
-  line-height: 1.5;
+  line-height: 1.6 !important;
   vertical-align: -.125em;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

@@ -68,37 +68,105 @@
         </div>
     </nav>
 
-    <div class="durian-btns">
-        <a href="#" class="durian-add">Rate Now</a>
-      </div>
+    <div class="text-center mx-auto pb-4 wow fadeInUp details-title" data-wow-delay="0.1s" style="max-width: 500px;">
+        <p class="section-title bg-white text-center text-primary px-3">The Durians</p>
+        <h1 class="mb-5" style="margin-bottom: 0 !important;">Durian Details</h1>
+    </div>
       
-      <div class="popup">
+    <div class="popup">
+        <form id="form-star" action="durian-details.html">
         <div class="popup-content">
           <span class="close">&times;</span>
-          <h2>Rate this durian:</h2>
-          <p id="product-info"></p>
+          <h2 style="text-align: left !important; ">Rate this durian:</h2>
+          <p id="durian-info"></p>
+          
+          <p id="tastiness"></p>
           <div class='rating-stars text-center'>
-            <ul id='popup-stars'>
-              <li class='popup-star' title='Unsatisfied' data-value='1'>
+            <ul id='stars'>
+              <li class='star' title='Unsatisfied' data-value='1'>
                 <i class='fa fa-star fa-fw'></i>
               </li>
-              <li class='popup-star' title='Acceptable' data-value='2'>
+              <li class='star' title='Acceptable' data-value='2'>
                 <i class='fa fa-star fa-fw'></i>
               </li>
-              <li class='popup-star' title='Moderate' data-value='3'>
+              <li class='star' title='Moderate' data-value='3'>
                 <i class='fa fa-star fa-fw'></i>
               </li>
-              <li class='popup-star' title='Excellent' data-value='4'>
+              <li class='star' title='Excellent' data-value='4'>
                 <i class='fa fa-star fa-fw'></i>
               </li>
-              <li class='popup-star' title='Perfect' data-value='5'>
+              <li class='star' title='Perfect' data-value='5'>
                 <i class='fa fa-star fa-fw'></i>
               </li>
             </ul>
           </div>
-          <button id="submit">Submit</button>
+
+          <p id="fragrance"></p>
+          <div class='rating-stars text-center'>
+            <ul id='stars2'>
+              <li class='star2' title='Unsatisfied' data-value='1'>
+                <i class='fa fa-star fa-fw'></i>
+              </li>
+              <li class='star2' title='Acceptable' data-value='2'>
+                <i class='fa fa-star fa-fw'></i>
+              </li>
+              <li class='star2' title='Moderate' data-value='3'>
+                <i class='fa fa-star fa-fw'></i>
+              </li>
+              <li class='star2' title='Excellent' data-value='4'>
+                <i class='fa fa-star fa-fw'></i>
+              </li>
+              <li class='star2' title='Perfect' data-value='5'>
+                <i class='fa fa-star fa-fw'></i>
+              </li>
+            </ul>
+          </div>
+
+          <p id="creaminess"></p>
+          <div class='rating-stars text-center'>
+            <ul id='stars3'>
+              <li class='star3' title='Unsatisfied' data-value='1'>
+                <i class='fa fa-star fa-fw'></i>
+              </li>
+              <li class='star3' title='Acceptable' data-value='2'>
+                <i class='fa fa-star fa-fw'></i>
+              </li>
+              <li class='star3' title='Moderate' data-value='3'>
+                <i class='fa fa-star fa-fw'></i>
+              </li>
+              <li class='star3' title='Excellent' data-value='4'>
+                <i class='fa fa-star fa-fw'></i>
+              </li>
+              <li class='star3' title='Perfect' data-value='5'>
+                <i class='fa fa-star fa-fw'></i>
+              </li>
+            </ul>
+          </div>
+
+          <p id="rarity"></p>
+          <div class='rating-stars text-center'>
+            <ul id='stars4'>
+              <li class='star4' title='Unsatisfied' data-value='1'>
+                <i class='fa fa-star fa-fw'></i>
+              </li>
+              <li class='star4' title='Acceptable' data-value='2'>
+                <i class='fa fa-star fa-fw'></i>
+              </li>
+              <li class='star4' title='Moderate' data-value='3'>
+                <i class='fa fa-star fa-fw'></i>
+              </li>
+              <li class='star4' title='Excellent' data-value='4'>
+                <i class='fa fa-star fa-fw'></i>
+              </li>
+              <li class='star4' title='Perfect' data-value='5'>
+                <i class='fa fa-star fa-fw'></i>
+              </li>
+            </ul>
+          </div>
+          <button id="star-submit" type="submit" >Submit</button>
         </div>
-      </div>
+        </form>
+    </div>
 
 
     <div class="durian-wrapper"></div>
@@ -135,29 +203,6 @@
   </div> -->
 
     <!--  Rating Durian  -->
-
-    <div class='rating-stars text-center'>
-        <ul id='stars'>
-          <li class='star' title='Unsatisfied' data-value='1'>
-            <i class='fa fa-star fa-fw'></i>
-          </li>
-          <li class='star' title='Acceptable' data-value='2'>
-            <i class='fa fa-star fa-fw'></i>
-          </li>
-          <li class='star' title='Moderate' data-value='3'>
-            <i class='fa fa-star fa-fw'></i>
-          </li>
-          <li class='star' title='Excellent' data-value='4'>
-            <i class='fa fa-star fa-fw'></i>
-          </li>
-          <li class='star' title='Perfect' data-value='5'>
-            <i class='fa fa-star fa-fw'></i>
-          </li>
-        </ul>
-      </div>
-
- 
-
 
     <section class="py-0" id="contact">
         <div class="bg-holder" style="background-image:url(assets/img/illustrations/footer-bg.png);background-position:center;background-size:cover;">
