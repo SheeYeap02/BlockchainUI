@@ -1,0 +1,80 @@
+.btn-receive, .btn-receive:active {
+    background-color: hsl(12, 75%, 51%);
+    border: 2px solid #e0b03a;
+}
+
+.btn-receive:hover {
+    background-color: hsl(9, 91%, 62%);
+    color:rgb(58, 56, 56);
+    font-weight: bold;
+}
+
+/* .categ-wrapper .table thead th,
+.subCateg-wrapper .table thead th {
+    width: 70%;
+}
+
+.categ-wrapper .table thead th:first-child {
+    width: 20%;
+}
+
+.subCateg-wrapper .table thead th:first-child {
+    width: 16%;    
+} */
+
+.durian-wrapper .table thead th:first-child {
+    width: 19%;
+}
+
+/* .categ-wrapper .table thead th:nth-child(2) {
+    width: 53%;
+    padding-left: 50px;
+}
+
+.subCateg-wrapper .table thead th:nth-child(2) {
+    width: 35%;
+    padding-left: 50px;
+} */
+
+.durian-wrapper .table thead th:nth-child(2) {
+    width: 16%;
+}
+
+/* .subCateg-wrapper .table thead th:nth-child(3) {
+    width: 28%;
+} */
+
+.durian-wrapper .table thead th:nth-child(3) {
+    width: 11%;
+}
+
+.durian-wrapper .table thead th:nth-child(4) {
+    width: 10%;
+}
+
+.durian-wrapper .table thead th:nth-child(5) {
+    width: 18%;
+}
+
+.durian-wrapper .table thead th:nth-child(6) {
+    width: 14%;
+}
+
+/* .categ-wrapper .table thead th:last-child {
+    padding-left: 40px;
+}
+
+.subCateg-wrapper .table thead th:last-child {
+    width: 24%;
+    padding-left: 40px
+} */
+
+.dist-text {
+    color:rgb(141, 49, 0);
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.dist-text-distributed {
+    color:#056105;
+}
