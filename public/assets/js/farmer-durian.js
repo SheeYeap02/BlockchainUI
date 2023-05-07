@@ -9,8 +9,8 @@ form.addEventListener('submit', function(event) {
   const distributorNo = document.getElementById('distributor').value;
 
   // do something with the values (e.g. send to server)
-  alert(`Durian ID: ${durianId}, Distributor No: ${distributorNo}`);
-  console.log(`Durian ID: ${durianId}, Distributor No: ${distributorNo}`);
+  alert(`Durian ID: ${durianId}, Distributor Name: ${distributorNo}`);
+  console.log(`Durian ID: ${durianId}, Distributor Name: ${distributorNo}`);
 
   // clear input values
   document.getElementById('durianid-send').value = '';
