@@ -38,13 +38,19 @@
   </head>
 
 
-  <body>
+  <body onload="endPreLoading()">
+    <div id="pre-loader">
+      <div class="jelly-box">
+          <div><img src="assets/img/favicons/durian.png" height="150px" width="150px"/></div>
+          <div></div>
+      </div>
+    </div>
 
     <!-- ===============================================-->
     <!--    Main Content-->
     <!-- ===============================================-->
-    <main class="main" id="top" style="margin-top: 60px">
-      <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3 bg-light opacity-85" data-navbar-on-scroll="data-navbar-on-scroll">
+    <main class="main" id="top" style="margin-top: 60px;">
+      <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3 bg-light opacity-85" data-navbar-on-scroll="data-navbar-on-scroll" >
         <div class="container"><a class="navbar-brand" href="index.html"><img class="d-inline-block align-top img-fluid" src="assets/img/favicons/durian.png" alt="" width="50" /><span class="text-theme font-monospace fs-4 ps-2">DurianGuard</span></a>
           <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
           <div class="collapse navbar-collapse border-top border-lg-0 mt-4 mt-lg-0" id="navbarSupportedContent">
@@ -70,42 +76,8 @@
           </div>
         </div>
       </nav>
-
-      <!-- ============================================-->
-      <!-- <section> begin ============================-->
-        <section class="z-index-1 cta" style="margin: -50px 0; padding-bottom: 40px;">
-          <div class="container">
-            <div class="row flex-center">
-              <div class="col-12">
-                <div class="card shadow h-100 py-5">
-                  <div class="card-body text-center">
-                    <h1 class="fw-semi-bold mb-4">Proceed to distribute into&nbsp;<span class="text-success">Durian Retailing</span>&nbsp;</h1>
-                    <form action="#" class="form-send-retailer">    
-                      <div class="form-row" style="text-align:left;">
-                          <div class="form-group col-md-6">
-                              <label for="durianid-send">Durian ID</label>
-                              <input type="text" class="form-control" id="durianid-send" placeholder="Durian ID..." name="durianid-send" required>
-                          </div>
-                          <div class="form-group col-md-6">
-                              <label for="retailer">Retailer Name</label>
-                              <input type="text" class="form-control" id="retailer" placeholder="Retailer Name..." name="retailer" required>
-                          </div>    
-                      </div>
-                      <button class="btn btn-lg btn-success px-6" type="submit">Send</button>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- end of .container-->
-  
-        </section>
-        <!-- <section> close ============================-->
-        <!-- ============================================-->  
- 
     <div class="text-center mx-auto pb-4 wow fadeInUp farmer-title" data-wow-delay="0.1s" style="max-width: 500px;">
-        <p class="section-title bg-white text-center text-primary px-3">The Distributors</p>
+        <p class="section-title bg-white text-center text-primary px-3">The Retailers</p>
         <h1 class="mb-5" style="margin-bottom: 0 !important;">Acknowledgement & Distribution</h1>
     </div>
       
@@ -141,7 +113,7 @@
                                       </th>
                                       <th>
                                         <a href="#" 
-                                           class="sorting text-uppercase text-secondary font-weight-bolder opacity-85">Retailer Details</a>
+                                           class="sorting text-uppercase text-secondary font-weight-bolder opacity-85">Distributor</a>
                                     </th>
                                       <th>
                                         <a href="#" 
@@ -149,7 +121,7 @@
                                     </th>
                                     <th>
                                         <a href="#" 
-                                           class="sorting text-uppercase text-secondary font-weight-bolder opacity-85">Distribute</a>
+                                           class="sorting text-uppercase text-secondary font-weight-bolder opacity-85">Retail</a>
                                     </th>
                                   </tr>
                               </thead>
@@ -319,6 +291,7 @@
 
     <script src="https://unpkg.com/scrollreveal"></script>
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/pre-loader.js"></script>
     <script src="assets/js/retailer-durian.js"></script>
 
     <script src="vendors/@popperjs/popper.min.js"></script>

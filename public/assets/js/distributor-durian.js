@@ -6,6 +6,7 @@ const durians = [
     weight: "20g",
     image: "assets/img/durian/durian1.jpg",
     tree: "Tree 1",
+    farm: "Farm 1",
     retailer: "Rizky Durian",
     state: "DISTRIBUTED",
   },
@@ -15,16 +16,18 @@ const durians = [
     weight: "25g",
     image: "assets/img/durian/durian2.jpg",
     tree: "Tree 2",
+    farm: "Farm 1",
     retailer: "Tiptop Durian",
     state: "DISTRIBUTING",
   },
   {
-    id: "Durian 4",
+    id: "Durian 3",
     type: "Red Prawn",
     weight: "22g",
     image: "assets/img/durian/durian3.jpg",
     tree: "Tree 3",
-    retailer: "XXX Durian",
+    farm: "Farm 1",
+    retailer: "D17",
     state: "CHECKING",
   },
 ];
@@ -57,7 +60,7 @@ durians.forEach((durian) => {
         <p class="text-xs mb-0 prod-pText">${durian.tree}</p>
       </td>
       <td class="align-left text-center text-sm">
-        <p class="text-xs mb-0 prod-pText retailer-name">${durian.retailer}</p>
+        <p class="text-xs mb-0 prod-pText farm-name">${durian.farm}</p>
       </td>
       <td class="align-left text-center text-sm" style="text-align: left !important;">
         <button class="btn btn-lg btn-success btn-receive" type="submit">Approve ?</button>
@@ -81,9 +84,6 @@ form.addEventListener("submit", function (event) {
   // get input values
   const durianId = document.getElementById("durianid-send").value;
   const retailerName = document.getElementById("retailer").value;
-
-  // do something with the values (e.g. send to server)
-  // alert(`Durian ID: ${durianId}, Retailer Name: ${retailerName}`);
 
   // check if durianId and retailerName are present in durians
   const selectedDurian = durians.find((durian) => durian.id === durianId && durian.retailer === retailerName);

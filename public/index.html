@@ -47,7 +47,14 @@
     <!-- <link href="assets/css/style.css" rel="stylesheet" /> -->
   </head>
 
-  <body>
+  <body onload="endPreLoading()">
+    <div id="pre-loader">
+      <div class="jelly-box">
+          <div><img src="assets/img/favicons/durian.png" height="150px" width="150px"/></div>
+          <div></div>
+      </div>
+    </div>
+  
     <!-- ===============================================-->
     <!--    Main Content-->
     <!-- ===============================================-->
@@ -156,7 +163,7 @@
               </p>
               <a
                 class="btn btn-lg btn-success order-0"
-                style="z-index: 99999; position: relative"
+                style="z-index: 999; position: relative"
                 href="quickstart.html"
                 role="button"
                 >Quick Start</a
@@ -1266,6 +1273,7 @@
 
     <script src="https://unpkg.com/scrollreveal"></script>
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/pre-loader.js"></script>
 
     <script src="vendors/@popperjs/popper.min.js"></script>
     <script src="vendors/bootstrap/bootstrap.min.js"></script>

@@ -38,7 +38,13 @@
   </head>
 
 
-  <body>
+  <body onload="endPreLoading()">
+    <div id="pre-loader">
+      <div class="jelly-box">
+          <div><img src="assets/img/favicons/durian.png" height="150px" width="150px"/></div>
+          <div></div>
+      </div>
+    </div>
 
     <!-- ===============================================-->
     <!--    Main Content-->
@@ -141,7 +147,7 @@
                                       </th>
                                       <th>
                                         <a href="#" 
-                                           class="sorting text-uppercase text-secondary font-weight-bolder opacity-85">Retailer Details</a>
+                                           class="sorting text-uppercase text-secondary font-weight-bolder opacity-85">Farm Details</a>
                                     </th>
                                       <th>
                                         <a href="#" 
@@ -319,6 +325,7 @@
 
     <script src="https://unpkg.com/scrollreveal"></script>
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/pre-loader.js"></script>
     <script src="assets/js/distributor-durian.js"></script>
 
     <script src="vendors/@popperjs/popper.min.js"></script>
