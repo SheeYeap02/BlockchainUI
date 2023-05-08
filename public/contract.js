@@ -132,13 +132,7 @@ const accessToContract = async () => {
 		"type": "error"
 	},
 	{
-		"inputs": [
-			{
-				"internalType": "string",
-				"name": "msg",
-				"type": "string"
-			}
-		],
+		"inputs": [],
 		"name": "Registered",
 		"type": "error"
 	},
@@ -837,6 +831,25 @@ const accessToContract = async () => {
 	{
 		"inputs": [
 			{
+				"internalType": "address",
+				"name": "add",
+				"type": "address"
+			}
+		],
+		"name": "getDistributorName",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
 				"internalType": "string",
 				"name": "durianId",
 				"type": "string"
@@ -983,6 +996,44 @@ const accessToContract = async () => {
 				"internalType": "struct DurianGuard.Rating[]",
 				"name": "",
 				"type": "tuple[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "add",
+				"type": "address"
+			}
+		],
+		"name": "getFarmName",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "add",
+				"type": "address"
+			}
+		],
+		"name": "getRetailerName",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
 			}
 		],
 		"stateMutability": "view",
@@ -1300,7 +1351,7 @@ const accessToContract = async () => {
 	}
 ];
 
-  const Address = "0x50390a09AAa4657f8cCA53C3F2Fc103539E1DC07";
+  const Address = "0xeEADebDD03B6115B4810BdF80FcD8349aD6ED020";
   window.web3 = await new Web3(window.ethereum); //how to access to smart contract
   window.contract = await new window.web3.eth.Contract(ABI, Address); //how you create an instance of that contract by using the abi and address
   console.log("connected to smart contract");
@@ -1310,7 +1361,7 @@ accessToContract();
 
 const register = async () => {
   const role = document.getElementById("userrole").value;
-  const name = document.getElementById("#username").value;
+  const name = document.getElementById("username").value;
 
   await window.contract.methods
     .registerRole(name, role)
@@ -1343,6 +1394,7 @@ const getRetailers = async () => {
 const getDistributors = async () => {
   const data = await window.contract.methods.getAllDistributors().call();
   console.log(data);
+  return data;
 };
 
 // //3-read data from smart contract

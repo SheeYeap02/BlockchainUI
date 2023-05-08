@@ -117,9 +117,8 @@ const durians = [
 ];
 
 const getRetailerName = async () => {
-  // const data= await window.contract.methods.getFarmerName(currentAd).call();
-  // console.log(data);
-  console.log("in getRetailerName")
+  const data= await window.contract.methods.getRetailerName(currentAd).call();
+  console.log(data);
 }
 
 //Display Durian Table
