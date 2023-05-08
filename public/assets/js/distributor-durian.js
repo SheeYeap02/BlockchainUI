@@ -168,7 +168,7 @@ receiveButtons.forEach((button) => {
     this.disabled = true;
 
     //add style to this state
-    let state = this.closest("tr").querySelector(".durian-name").closest("tr").querySelector(".dist-text");
+    let state = this.closest("tr").querySelector(".dist-text");
     state.textContent = "Distributing";
 
     // do something else with the durian name, like send it to a server

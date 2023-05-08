@@ -252,7 +252,6 @@ closeButton.addEventListener('click', function() {
   popup.classList.remove('show');
 });
 
-
 // Add event listener to the submit button
 submitButton.addEventListener('click', function() {
   // Get the selected star value
