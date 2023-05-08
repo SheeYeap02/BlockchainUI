@@ -4,6 +4,27 @@ const distributor_name = "Distributor: Distributor 1";
 distributor_connect.textContent = distributor_name;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Get the retailer input field
+const retailerField = document.getElementById('retailer');
+const retailers = [
+  { name: 'Retailer 1', role: 'RETAILER' },
+  { name: 'Retailer 2', role: 'RETAILER' },
+  { name: 'Retailer 3', role: 'RETAILER' },
+  { name: 'Retailer 4', role: 'RETAILER' },
+];
+
+// Create the dropdown list of available retailers
+const retailerOptions = [
+  `<option value="default">Select a retailer...</option>`,
+  ...retailers.map(retailer => `<option value="${retailer.name}">${retailer.name}</option>`)
+].join('');
+const dropdownHTML = `<select class="form-control" id="distributor" name="distributor" required>${retailerOptions}</select>`;
+
+// Set the dropdown list as the innerHTML of the distributor input field
+retailerField.innerHTML = dropdownHTML;
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Display Durians History
 const durians = [
   {
@@ -106,7 +127,7 @@ form.addEventListener("submit", function (event) {
 
   // update state of the respective row in the table
   // find index of durian object with specified id
-  const durianIndex = durians.findIndex((durian) => durian.id === durianId);
+  const durianIndex = durians.findIndex((durian) => durian.id === durianId && durian.retailer === retailerName) ;
   alert(`${durians[durianIndex].state}`);
   if (durianIndex !== -1) {
     durians[durianIndex].state = "DISTRIBUTED";
