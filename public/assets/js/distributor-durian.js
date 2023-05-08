@@ -38,6 +38,11 @@ const durians = [
   },
 ];
 
+const getDistributorName = async () => {
+  const data= await window.contract.methods.getDistributorName(currentAd).call();
+  console.log(data);
+}
+
 //Display Durian Table
 const duriansTable = document.getElementById("durians-table");
 // Clear the existing HTML inside the table
