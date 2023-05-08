@@ -1,3 +1,9 @@
+// Set Current Retailer Name 
+const farmer_connect = document.querySelector('.farmer-connect');
+const farmer_name = "Farmer: Farmer 1";
+farmer_connect.textContent = farmer_name;
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Get Value of Sending to the Distributor
 const form = document.querySelector('.form-send-distributor');
 

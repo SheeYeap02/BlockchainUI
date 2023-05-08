@@ -1,3 +1,8 @@
+.topPage-bc {
+    margin-left: 30px;
+    font-size: larger;
+}
+
 .btn-receive,
 .btn-receive:active {
   background-color: hsl(12, 75%, 51%);
@@ -8,6 +13,7 @@
   background-color: hsl(9, 91%, 62%);
   color: rgb(58, 56, 56);
   font-weight: bold;
+  border: 1px solid #464544;
 }
 
 .durian-wrapper .table thead th:first-child {
@@ -19,7 +25,7 @@
 }
 
 .durian-wrapper .table thead th:nth-child(3) {
-  width: 9%;
+  width: 11%;
 }
 
 .durian-wrapper .table thead th:nth-child(4) {

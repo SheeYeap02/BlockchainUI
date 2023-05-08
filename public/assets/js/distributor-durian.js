@@ -1,3 +1,9 @@
+// Set Current Retailer Name 
+const distributor_connect = document.querySelector('.distributor-connect');
+const distributor_name = "Distributor: Distributor 1";
+distributor_connect.textContent = distributor_name;
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Display Durians History
 const durians = [
   {

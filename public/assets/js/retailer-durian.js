@@ -1,3 +1,9 @@
+// Set Current Retailer Name 
+const retailer_connect = document.querySelector('.retailer-connect');
+const retailer_name = "Retailer: Rizky Durian";
+retailer_connect.textContent = retailer_name;
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Display Durians History
 const durians = [
   {
