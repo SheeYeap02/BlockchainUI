@@ -1309,8 +1309,8 @@ const accessToContract = async () => {
 accessToContract();
 
 const register = async () => {
-  const role = document.getElementById("user-role").value;
-  const name = document.getElementById("user-name").value;
+  const role = document.getElementById("userrole").value;
+  const name = document.getElementById("#username").value;
 
   await window.contract.methods
     .registerRole(name, role)

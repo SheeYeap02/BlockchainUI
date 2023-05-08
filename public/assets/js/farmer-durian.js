@@ -5,6 +5,28 @@ const farmer_name = "Farmer: Farmer 1";
 farmer_connect.textContent = farmer_name;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Get the distributor input field 
+const distributorField = document.getElementById('distributor');
+const distributors = [
+  { name: 'Distributor 1', role: 'DISTRIBUTOR' },
+  { name: 'Distributor 2', role: 'DISTRIBUTOR' },
+  { name: 'Distributor 3', role: 'DISTRIBUTOR' },
+  { name: 'Distributor 4', role: 'DISTRIBUTOR' },
+];
+
+// Create the dropdown list of available distributors
+// const distributorOptions = distributors.map(distributor => `<option value="${distributor.name}">${distributor.name}</option>`).join('');
+const distributorOptions = [
+  `<option value="default">Select a distributor...</option>`,
+  ...distributors.map(distributor => `<option value="${distributor.name}">${distributor.name}</option>`)
+].join('');
+const dropdownHTML = `<select class="form-control" id="distributor" name="distributor" required>${distributorOptions}</select>`;
+
+// Set the dropdown list as the innerHTML of the distributor input field
+distributorField.innerHTML = dropdownHTML;
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Get Value of Sending to the Distributor
 const form = document.querySelector(".form-send-distributor");
 

@@ -44,6 +44,7 @@
     <!-- ===============================================-->
     <link href="assets/css/theme.css" rel="stylesheet" />
     <link href="assets/css/main.css" rel="stylesheet" />
+    <link href="assets/css/index.css" rel="stylesheet" />
     <!-- <link href="assets/css/style.css" rel="stylesheet" /> -->
 
     
@@ -169,17 +170,50 @@
                 DurianGuard provides farmers, distributors, retailers, and
                 consumers with online self-service blockchain applications.
               </p>
-              <a
-                class="btn btn-lg btn-success order-0"
-                style="z-index: 999; position: relative"
-                href="sign-up.html"
-                role="button"
-                >Quick Start</a
-              >
+              <button class="btn btn-lg btn-success order-0" style="z-index: 999; position: relative" id="quick-start-btn" >Quick Start</button>
+              <!-- <a class="btn btn-lg btn-success order-0" style="z-index: 999; position: relative" href="quickstart.html" role="button" id="quick-start-btn" >Quick Start</a> -->
+              
+              <!-- Here is your testing  -->
+              <!-- <button onclick="register()">Register :)</button> -->
+              <!-- This one for testing purpose only -->
+              <!-- When you do dont have to include this -->
+              <!-- <button onclick="getRetailers()">Get Retailers</button> -->
+              <!-- <button onclick="getDistributors()">Get Distributors</button> -->
+              <!-- <a class="btn btn-lg btn-success order-0" style="z-index: 999; position: relative" href="sign-up.html" role="button" >Quick Start</a> -->
             </div>
           </div>
         </div>
       </section>
+
+    <div class="popup">
+        <form id="form-register-role" action="#">
+        <div class="popup-content">
+            <span class="close">&times;</span>
+            <h2 style="text-align: left !important; ">Set Your Role First</h2>
+            <p id="durian-info"></p>
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label for="username">Username</label>
+                    <input required type="text"  class="form-control" id="username" placeholder="Enter your username..." name="username" >
+                </div>
+                <div class="form-group col-md-12 role-input">
+                    <label for="userrole">Role</label>
+                    <!-- <input type="text" class="form-control" id="userrole" placeholder="Role..." name="userrole" > -->
+                    <select class="form-control" id="userrole" name="userrole" required>
+                      <option value="" selected disabled>Select Role...</option>
+                      <option value="FARMER">Farmer</option>
+                      <option value="DISTRIBUTOR">Distributor</option>
+                      <option value="RETAILER">Retailer</option>
+                      <option value="CUSTOMER">Customer</option>
+                    </select>
+                  </div>  
+                <div class="btn-row">
+                    <!-- Here is the register function -->
+                    <button id="role-submit" type="submit" onclick="register()">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
 
       <section class="py-5" id="Opportunities">
         <div
@@ -1224,6 +1258,7 @@
     <script src="https://unpkg.com/scrollreveal"></script>
     <script src="assets/js/main.js"></script>
     <script src="assets/js/pre-loader.js"></script>
+    <script src="assets/js/quick-start.js"></script>
 
     <script src="vendors/@popperjs/popper.min.js"></script>
     <script src="vendors/bootstrap/bootstrap.min.js"></script>
