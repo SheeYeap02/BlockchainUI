@@ -181,7 +181,7 @@
       </section>
 
     <div class="popup">
-        <form id="form-register-role" action="#">
+        <form id="form-register-role" action="#" >
           <div class="popup-content">
             <span class="close">&times;</span>
             <h2 style="text-align: left !important; ">Set Your Role First</h2>
@@ -196,15 +196,15 @@
                     <!-- <input type="text" class="form-control" id="userrole" placeholder="Role..." name="userrole" > -->
                     <select class="form-control" id="userrole" name="userrole" required>
                       <option value="" selected disabled>Select Role...</option>
-                      <option value="FARMER">Farmer</option>
-                      <option value="DISTRIBUTOR">Distributor</option>
-                      <option value="RETAILER">Retailer</option>
-                      <option value="CUSTOMER">Customer</option>
+                      <option value="Farm">Farmer</option>
+                      <option value="Distributor">Distributor</option>
+                      <option value="Retailer">Retailer</option>
+                      <option value="Customer">Customer</option>
                     </select>
                   </div>  
                 <div class="btn-row">
                     <!-- Here is the register function -->
-                    <button id="role-submit" type="submit" onclick="register()">Submit</button>
+                    <button id="role-submit" onclick="register()">Submit</button>
                 </div>
               </div>
             </div>
@@ -1249,7 +1249,7 @@
     <!-- ===============================================-->
     <!-- Web3 - MetaMask -->
     <script src="connect.js"></script>
-    <script src="contract.js"> </script>
+    <script src="contract.js"></script>
 
     <script src="https://unpkg.com/scrollreveal"></script>
     <script src="assets/js/main.js"></script>

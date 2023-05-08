@@ -18,40 +18,40 @@ closeButton.addEventListener('click', function() {
 });
 
 // Get the submit button element
-const submitButton = document.querySelector('#role-submit');
-// Add event listener to the submit button
-submitButton.addEventListener('click', function(event) {
-    event.preventDefault()
+// const submitButton = document.querySelector('#role-submit');
+// // Add event listener to the submit button
+// submitButton.addEventListener('click', function(event) {
+//     event.preventDefault()
 
-    const username = document.querySelector('#username').value;
-    const selectedUserRole = document.getElementById("userrole").value;
+//     const username = document.querySelector('#username').value;
+//     const selectedUserRole = document.getElementById("userrole").value;
 
-    if(username === null || username === '' || selectedUserRole === null || selectedUserRole === '') {
-        alert(`Please provide your username and role to proceed...`); 
-    } else {
-        alert(`
-        Username: ${username} 
-        Role: ${selectedUserRole}`); 
+//     if(username === null || username === '' || selectedUserRole === null || selectedUserRole === '') {
+//         alert(`Please provide your username and role to proceed...`); 
+//     } else {
+//         alert(`
+//         Username: ${username} 
+//         Role: ${selectedUserRole}`); 
 
-        // Switch based on the selected role and redirect to the appropriate page
-        switch (selectedUserRole) {
-          case "FARMER":
-            window.location.href = "farmer.html";
-            break;
-          case "DISTRIBUTOR":
-            window.location.href = "distributor.html";
-            break;
-          case "RETAILER":
-            window.location.href = "retailer.html";
-            break;
-          case "CUSTOMER":
-            window.location.href = "consumer.html";
-            break;
-          default:
-            alert("Please select a valid role.");
-            break;
-        }
-    }
+//         // Switch based on the selected role and redirect to the appropriate page
+//         switch (selectedUserRole) {
+//           case "FARMER":
+//             window.location.href = "farmer.html";
+//             break;
+//           case "DISTRIBUTOR":
+//             window.location.href = "distributor.html";
+//             break;
+//           case "RETAILER":
+//             window.location.href = "retailer.html";
+//             break;
+//           case "CUSTOMER":
+//             window.location.href = "consumer.html";
+//             break;
+//           default:
+//             alert("Please select a valid role.");
+//             break;
+//         }
+//     }
 
-    popup.classList.remove('show');
-});
+//     popup.classList.remove('show');
+// });
