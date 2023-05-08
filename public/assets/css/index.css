@@ -1,0 +1,86 @@
+/* Popup form */
+.popup {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: none;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.popup-content {
+  background-color: #fefefe;
+  margin: 10% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 40%;
+  max-width: 600px;
+  position: relative;
+  z-index: 999;
+}
+
+.close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding-right: 10px;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#submit {
+  display: block;
+  margin: auto;
+}
+
+#role-submit {
+  text-align: center;
+  border: none;
+  border-radius: 5px;
+  font-size: 18px;
+  padding: 6px 36px;
+  background-color: #b2d6b1;
+  box-shadow: 0.2rem 2rem 3.2rem rgba(0, 0, 0, 0.2);
+}
+
+#form-register-role {
+  text-align: center;
+}
+
+#durian-info {
+  text-align: left;
+}
+
+#role-submit:hover {
+  transition: 0.6s ease-in-out;
+  color: #fff;
+  background-color: #258446;
+}
+
+.show {
+  display: block;
+}
+
+.form-row {
+  text-align: left !important;
+}
+
+.role-input {
+  padding: 20px 0;
+}
+
+.btn-row {
+  padding: 20px 0;
+  text-align: center;
+}
