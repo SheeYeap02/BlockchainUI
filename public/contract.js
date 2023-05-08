@@ -7,56 +7,6 @@
 //     document.getElementById("accountAddr").innerHTML = account;
 //   }
 // };
-const curAcc = null;
-const connectAccount = async () => {
-  const accounts = await window.ethereum
-    .request({ method: "eth_requestAccounts" })
-    .catch((err) => {
-      if (err.code === 4001) {
-        // EIP-1193 userRejectedRequest error
-        // If this happens, the user rejected the connection request.
-        console.log("Please connect to MetaMask.");
-      } else {
-        console.error(err);
-      }
-    });
-  const account = accounts[0];
-  curAcc = accounts[0];
-  document.getElementById("accountAddr").innerHTML = accounts[0];
-
-  sessionStorage.setItem("accAddr", accounts[0]);
-};
-
-let currentAccount = null;
-window.ethereum
-  .request({ method: "eth_accounts" })
-  .then(handleAccountsChanged)
-  .catch((err) => {
-    console.error(err);
-  });
-
-window.ethereum.on("accountsChanged", handleAccountsChanged);
-
-function handleAccountsChanged(accounts) {
-  if (accounts.length === 0) {
-    console.log("Please connect to MetaMask.");
-  } else if (accounts[0] !== currentAccount) {
-    currentAccount = accounts[0];
-    document.getElementById("accountAddr").innerHTML = currentAccount;
-    sessionStorage.setItem("accAddr", accounts[0]);
-  }
-}
-
-const value = sessionStorage.getItem("accAddr");
-
-if (value !== null) {
-  connectBtn = document.getElementById("accountAddr");
-  connectBtn.innerHTML = value;
-  connectBtn.disabled = true;
-} else {
-  connectBtn.innerHTML = "Connect";
-  connectBtn.disabled = false;
-}
 
 //2- connect to smart contract
 const accessToContract = async () => {
@@ -1350,7 +1300,7 @@ const accessToContract = async () => {
 	}
 ];
 
-  const Address = "0xffec02a2C4c7EF2463B2a7aE87eaC66992617D20";
+  const Address = "0x50390a09AAa4657f8cCA53C3F2Fc103539E1DC07";
   window.web3 = await new Web3(window.ethereum); //how to access to smart contract
   window.contract = await new window.web3.eth.Contract(ABI, Address); //how you create an instance of that contract by using the abi and address
   console.log("connected to smart contract");
@@ -1364,10 +1314,26 @@ const register = async () => {
 
   await window.contract.methods
     .registerRole(name, role)
-    .send({ from: account })
+    .send({ from: curAcc })
     .catch((err) => console.error(err.message));
-  console.log("Registered");
+  console.log("In Register");
 };
+
+const getMyDurians = async () => {
+	const data = await window.contract.methods.getAllDurians().call();
+	console.log(data);
+	// Define an empty list to store the matching objects
+	const matchingObjects = [];
+	// Loop through the data array and check for matching ids
+	for (let i = 0; i < data.length; i++) {
+	  const obj = data[i];
+	  if (obj.harvestInfo.farmAddress.toLowerCase() === currentAd.toLowerCase()) {
+		// This id has already been processed, add the object to the matching list
+		matchingObjects.push(obj);
+	  }
+	}
+	console.log(matchingObjects);
+  };
 
 const getRetailers = async () => {
   const data = await window.contract.methods.getAllRetailers().call();

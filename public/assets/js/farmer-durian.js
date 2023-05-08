@@ -1,5 +1,6 @@
-// Set Current Retailer Name 
-const farmer_connect = document.querySelector('.farmer-connect');
+// Set Current Retailer Name
+const currentAd = sessionStorage.getItem("accAddr");
+const farmer_connect = document.querySelector(".farmer-connect");
 const farmer_name = "Farmer: Farmer 1";
 farmer_connect.textContent = farmer_name;
 
@@ -27,24 +28,23 @@ distributorField.innerHTML = dropdownHTML;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Get Value of Sending to the Distributor
-const form = document.querySelector('.form-send-distributor');
+const form = document.querySelector(".form-send-distributor");
 
-form.addEventListener('submit', function(event) {
+form.addEventListener("submit", function (event) {
   event.preventDefault(); // prevent form submission
 
   // get input values
-  const durianId = document.getElementById('durianid-send').value;
-  const distributorNo = document.getElementById('distributor').value;
+  const durianId = document.getElementById("durianid-send").value;
+  const distributorNo = document.getElementById("distributor").value;
 
   // do something with the values (e.g. send to server)
   alert(`Durian ID: ${durianId}, Distributor Name: ${distributorNo}`);
   console.log(`Durian ID: ${durianId}, Distributor Name: ${distributorNo}`);
 
   // clear input values
-  document.getElementById('durianid-send').value = '';
-  document.getElementById('distributor').value = '';
+  document.getElementById("durianid-send").value = "";
+  document.getElementById("distributor").value = "";
 });
-
 
 //Display Durians History
 const durians = [
@@ -64,6 +64,10 @@ const durians = [
   },
 ];
 
+const getFarmName = async () => {
+  const data = await window.contract.methods.getFarmerName(currentAd).call();
+  console.log(data);
+};
 const duriansTable = document.getElementById("durians-table");
 
 // Clear the existing HTML inside the table
