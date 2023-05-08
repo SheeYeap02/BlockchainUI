@@ -1369,6 +1369,7 @@ const getRetailers = async () => {
 const getDistributors = async () => {
   const data = await window.contract.methods.getAllDistributors().call();
   console.log(data);
+  return data;
 };
 
 // //3-read data from smart contract

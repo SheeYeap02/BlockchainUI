@@ -1,30 +1,45 @@
 // Set Current Retailer Name
 const currentAd = sessionStorage.getItem("accAddr");
-const farmer_connect = document.querySelector(".farmer-connect");
-const farmer_name = "Farmer: Farmer 1";
-farmer_connect.textContent = farmer_name;
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Get the distributor input field 
-const distributorField = document.getElementById('distributor');
-const distributors = [
-  { name: 'Distributor 1', role: 'DISTRIBUTOR' },
-  { name: 'Distributor 2', role: 'DISTRIBUTOR' },
-  { name: 'Distributor 3', role: 'DISTRIBUTOR' },
-  { name: 'Distributor 4', role: 'DISTRIBUTOR' },
-];
+const getFarmName = async () => {
+  const data = await window.contract.methods.getFarmName(currentAd).call();
+  console.log(data);
+  const farmer_name = data;
+  const farmer_connect = document.querySelector(".farmer-connect");
+  farmer_connect.textContent = "Farm: " + farmer_name;
+};
+getFarmName();
 
-// Create the dropdown list of available distributors
-// const distributorOptions = distributors.map(distributor => `<option value="${distributor.name}">${distributor.name}</option>`).join('');
-const distributorOptions = [
-  `<option value="default">Select a distributor...</option>`,
-  ...distributors.map(distributor => `<option value="${distributor.name}">${distributor.name}</option>`)
-].join('');
-const dropdownHTML = `<select class="form-control" id="distributor" name="distributor" required>${distributorOptions}</select>`;
+getDistributors().then((data) => {
+  const distributors = [];
 
-// Set the dropdown list as the innerHTML of the distributor input field
-distributorField.innerHTML = dropdownHTML;
+  for (let i = 0; i < data[0].length; i++) {
+    const distributor = {
+      address: data[0][i],
+      name: data[1][i],
+      //more attribute: data[2][i],
+      //more attribute: data[3][i],
+    };
+    distributors.push(distributor);
+  }
+  // Get the distributor input field
+  const distributorField = document.getElementById("distributor");
 
+  // Create the dropdown list of available distributors
+  const distributorOptions = [
+    `<option value="default">Select a distributor...</option>`,
+    ...distributors.map(
+      (distributor) =>
+        `<option value="${distributor.address}">${distributor.name}</option>`
+    ),
+  ].join("");
+  const dropdownHTML = `<select class="form-control" id="distributor" name="distributor" required>${distributorOptions}</select>`;
+
+  // Set the dropdown list as the innerHTML of the distributor input field
+  distributorField.innerHTML = dropdownHTML;
+});
+
+getDistributors();
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Get Value of Sending to the Distributor
@@ -64,10 +79,6 @@ const durians = [
   },
 ];
 
-const getFarmName = async () => {
-  const data = await window.contract.methods.getFarmerName(currentAd).call();
-  console.log(data);
-};
 const duriansTable = document.getElementById("durians-table");
 
 // Clear the existing HTML inside the table
