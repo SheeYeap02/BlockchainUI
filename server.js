@@ -36,6 +36,10 @@ app.get("/retailer", (req, res) => {
     res.sendFile(path.join(__dirname + "public/retailer.html"));
 })
 
+app.get("/sign-up", (req, res) => {
+    res.sendFile(path.join(__dirname + "public/sign-up.html"));
+})
+
 
 
 const server = app.listen(5000);

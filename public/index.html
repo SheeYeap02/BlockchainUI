@@ -46,6 +46,14 @@
     <link href="assets/css/main.css" rel="stylesheet" />
     <link href="assets/css/index.css" rel="stylesheet" />
     <!-- <link href="assets/css/style.css" rel="stylesheet" /> -->
+
+    
+    <!-- Web 3 - MetaMask Wallet -->
+    <script
+        type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.2.7-rc.0/web3.min.js"
+    ></script>
+      <!-- ------------------------- -->
   </head>
 
   <body onload="endPreLoading()">
@@ -164,6 +172,13 @@
               </p>
               <button class="btn btn-lg btn-success order-0" style="z-index: 999; position: relative" id="quick-start-btn" >Quick Start</button>
               <!-- <a class="btn btn-lg btn-success order-0" style="z-index: 999; position: relative" href="quickstart.html" role="button" id="quick-start-btn" >Quick Start</a> -->
+              <a
+                class="btn btn-lg btn-success order-0"
+                style="z-index: 999; position: relative"
+                href="sign-up.html"
+                role="button"
+                >Quick Start</a
+              >
             </div>
           </div>
         </div>
@@ -1234,67 +1249,8 @@
     <!-- ===============================================-->
     <!--    JavaScripts-->
     <!-- ===============================================-->
-
-    
-    <!-- ------------------------------------------------------------------------ -->
-    <!-- Include this code in all html files -->
-    <!-- From here -->
-    <!-- Code to connect to metamask account -->
-    <script>
-      async function connectAccount() {
-        const accounts = await window.ethereum
-          .request({ method: "eth_requestAccounts" })
-          .catch((err) => {
-            if (err.code === 4001) {
-              // EIP-1193 userRejectedRequest error
-              // If this happens, the user rejected the connection request.
-              console.log("Please connect to MetaMask.");
-            } else {
-              console.error(err);
-            }
-          });
-        const account = accounts[0];
-        document.getElementById("accountAddr").innerHTML = accounts[0];
-
-        sessionStorage.setItem("accAddr", accounts[0]);
-      }
-    </script>
-    <!-- Change account address from the current account to another account -->
-    <script>
-      let currentAccount = null;
-      window.ethereum.request({ method: 'eth_accounts' })
-        .then(handleAccountsChanged)
-        .catch((err) => {
-          console.error(err);
-        });
-
-      window.ethereum.on('accountsChanged', handleAccountsChanged);
-
-      function handleAccountsChanged(accounts) {
-        if (accounts.length === 0) {
-          console.log('Please connect to MetaMask.');
-        } else if (accounts[0] !== currentAccount) {
-          currentAccount = accounts[0];
-          document.getElementById("accountAddr").innerHTML = currentAccount;
-          sessionStorage.setItem("accAddr", accounts[0]);
-        }
-      }
-    </script>
-    <!-- To get the account address from the session storage -->
-    <script>
-      const value = sessionStorage.getItem("accAddr");
-
-      if (value !== null) {
-        connectBtn = document.getElementById("accountAddr");
-        connectBtn.innerHTML = value;
-        connectBtn.disabled = true;
-      } else {
-        connectBtn.innerHTML = "Connect";
-        connectBtn.disabled = false;
-      }
-    </script>
-    <!-- Until here -->
-    <!-- -------------------------------------------------------------- -->
+    <!-- Web3 - MetaMask -->
+    <script src="contract.js"> </script>
 
     <script src="https://unpkg.com/scrollreveal"></script>
     <script src="assets/js/main.js"></script>
@@ -1307,10 +1263,6 @@
     <script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
     <script src="assets/js/theme.js"></script>
 
-    <!-- Web3 - MetaMask -->
-    <!-- <script src="index.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.2.7-rc.0/web3.min.js"></script> -->
-    <!-- --------------------------- -->
     <link
       href="https://fonts.googleapis.com/css2?family=Chivo:wght@300;400;700;900&amp;display=swap"
       rel="stylesheet"
