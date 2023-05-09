@@ -43,7 +43,7 @@ getRetailersMyDurians().then((data) => {
   }));
   display();
   displayBtn();
-  changeBtn();
+  chgBtn();
 });
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -169,15 +169,14 @@ const display = async () => {
   await durians.forEach((durian) => {
     let addUnitPriceButton = "";
     let dState = null;
-    switch(Number(durian.state)) {
-      case 2: 
+    switch (Number(durian.state)) {
+      case 2:
         dState = "Distributed";
         break;
       case 3:
-        dState = "Price Setting"
-
+        dState = "Price Setting";
     }
-    if (durian.price === 0 && dState == "PRICE SETTING") {
+    if (durian.price === 0 && dState == "Price Setting") {
       addUnitPriceButton = `
       <span class="text-secondary text-xs font-weight-bold">
           <a href="#" class="button button-small edit price-add" title="Edit">
@@ -186,7 +185,7 @@ const display = async () => {
       </span>`;
       //   addUnitPriceButton = `<a href="#popup1"><input class="addBtn" type="submit" value="Add Price" /></a>`;
     } else if (durian.state == "RETAILING") {
-      addUnitPriceButton = `<p class="text-xs mb-0 prod-pText">RM ${durian.price}</p>`;
+      addUnitPriceButton = `<p class="text-xs mb-0 prod-pText">${durian.price} ETH</p>`;
     } else {
       addUnitPriceButton = `Haven't Approve`;
     }
@@ -242,21 +241,29 @@ const displayBtn = async () => {
   // to change the layout of state and price column
   const receiveButtons = document.querySelectorAll(".btn-receive");
   receiveButtons.forEach((button) => {
-    button.addEventListener("click", function () {
+    button.addEventListener("click", async function () {
       // get the durian name from the row data
-      const durianName =
+      const durianId =
         this.closest("tr").querySelector(".durian-name").textContent;
+      const price = this.closest("tr").querySelector("#price");
+      const durianPrice = web3.utils.toWei(String(price), 'ether');
 
-      // change the button text to "Received"
-      this.textContent = "Received";
-      this.classList.remove("btn-success");
-      this.classList.add("btn-secondary");
-      this.disabled = true;
+      const tx = await window.contract.methods
+        .durianReceived_Retailer(durianId, durianPrice)
+        .send({ from: currentAd });
+      const receipt = await web3.eth.getTransactionReceipt(tx.transactionHash);
+      if (receipt.status === true) {
+        // change the button text to "Received"
+        this.textContent = "Received";
+        this.classList.remove("btn-success");
+        this.classList.add("btn-secondary");
+        this.disabled = true;
 
-      //add style to this state
-      let state = this.closest("tr").querySelector(".state-text");
-      state.textContent = "PRICE SETTING";
-      // state.classList.add("state-text-retailed");
+        //add style to this state
+        let state = this.closest("tr").querySelector(".state-text");
+        state.textContent = "Price Setting";
+        // state.classList.add("state-text-retailed");
+      }
 
       //change the price style
       this.closest("tr").querySelector(".price-text").innerHTML = `
@@ -283,7 +290,7 @@ const chgBtn = async () => {
       .closest("tr")
       .querySelector(".state-text").textContent;
 
-    if (rowState === "RETAILING" || rowState === "PRICE SETTING") {
+    if (rowState === "Retailing" || rowState === "Price Setting") {
       button.textContent = "Received";
       button.classList.remove("btn-success");
       button.classList.add("btn-secondary");
@@ -295,7 +302,7 @@ const chgBtn = async () => {
 //Set the state that is 'RETAILING OR PRICE SETTING' to green color
 let stateTextElements = document.querySelectorAll(".state-text");
 stateTextElements.forEach((stateTextElement) => {
-  if (stateTextElement.textContent === "RETAILING") {
+  if (stateTextElement.textContent === "Retailing") {
     stateTextElement.classList.add("state-text-retailed");
   }
 });
