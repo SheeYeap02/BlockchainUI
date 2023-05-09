@@ -1416,7 +1416,7 @@ const accessToContract = async () => {
 	}
 ];
 
-  const Address = "0xFBF424ff268D2dAfead5D4888412A474cc190063";
+  const Address = "0x63869FA9Ba4437CF3148Ac707F989D9E5ae92A0A";
   window.web3 = await new Web3(window.ethereum); //how to access to smart contract
   window.contract = await new window.web3.eth.Contract(ABI, Address); //how you create an instance of that contract by using the abi and address
   console.log("connected to smart contract");
@@ -1524,7 +1524,7 @@ const addDurian = async () => {
   const weight = document.getElementById("weight").value;
   const tree = document.getElementById("tree").value;
 
-  if (role == "Farm") {
+//   if (role == "Farm") {
     const tx = await window.contract.methods
       .harvestDurian(tree, durianId, weight, durianType)
       .send({ from: curAcc });
@@ -1544,11 +1544,13 @@ const addDurian = async () => {
           tree +
           " is harvested successfully 😊"
       );
-    } else {
-      alert("Harvest Fail. Please try again.");
-    }
+    // } else {
+    //   alert("Harvest Fail. Please try again.");
+    // }
   }
 };
+
+
 
 // //3-read data from smart contract
 // const readfromContract = async () => {
