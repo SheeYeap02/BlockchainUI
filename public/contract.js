@@ -1374,25 +1374,28 @@ const register = async () => {
     console.log("HI" + tx.transactionHash);
 
     const receipt = await web3.eth.getTransactionReceipt(tx.transactionHash);
-	console.log(receipt);
+    console.log(receipt);
     if (receipt.status === true) {
       alert("Registered successfully");
-	  switch(role) {
-			case "Farm":
-            window.location.href = "farmer.html";
-            break;
-          case "Distributor":
-            window.location.href = "distributor.html";
-            break;
-          case "Retailer":
-            window.location.href = "retailer.html";
-            break;
-	  }
+      switch (role) {
+        case "Farm":
+          window.location.href = "farmer.html";
+		  alert("Welcome to Farmer's Page ✨ Start to harvest your durian and Send them to Distributors! 😊")
+          break;
+        case "Distributor":
+          window.location.href = "distributor.html";
+		  alert("Welcome to Distributor's Page ✨ Start to confirm pending request and Distribute them to Retailers! 😊")
+          break;
+        case "Retailer":
+          window.location.href = "retailer.html";
+		  alert("Welcome to Retailer's Page ✨ Start to check your durians stock here! 😊")
+          break;
+      }
     } else {
       alert("There is something wrong with the registration");
     }
   } else {
-	window.location.href = "consumer.html";
+    window.location.href = "consumer.html";
   }
 };
 
@@ -1425,10 +1428,6 @@ const getDistributors = async () => {
   return data;
 };
 
-
-
-
-
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Get Value of Sending to the Distributor
 const form = document.querySelector(".form-send-distributor");
@@ -1452,6 +1451,38 @@ form.addEventListener("submit", async function (event) {
   }
   
 });
+// Add new durian
+const addDurian = async () => {
+  const durianId = document.getElementById("durianid").value;
+  const durianType = document.getElementById("duriantype").value;
+  const weight = document.getElementById("weight").value;
+  const tree = document.getElementById("tree").value;
+
+  if (role == "Farm") {
+    const tx = await window.contract.methods
+      .harvestDurian(tree, durianId, weight, durianType)
+      .send({ from: curAcc });
+
+    const receipt = await web3.eth.getTransactionReceipt(tx.transactionHash);
+    console.log(receipt);
+    if (receipt.status === true) {
+      alert(
+        "Durian: " +
+          durianId +
+          " - " +
+          durianType +
+          " - " +
+          weight +
+          "gram - " +
+          " on Tree " +
+          tree +
+          " is harvested successfully 😊"
+      );
+    } else {
+      alert("Harvest Fail. Please try again.");
+    }
+  }
+};
 
 // //3-read data from smart contract
 // const readfromContract = async () => {
