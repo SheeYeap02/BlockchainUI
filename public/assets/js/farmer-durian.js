@@ -41,52 +41,25 @@ getDistributors().then((data) => {
 
 getDistributors();
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//Get Value of Sending to the Distributor
-const form = document.querySelector(".form-send-distributor");
-
-form.addEventListener("submit", function (event) {
-  event.preventDefault(); // prevent form submission
-
-  // get input values
-  const durianId = document.getElementById("durianid-send").value;
-  const distributorNo = document.getElementById("distributor").value;
-
-  // do something with the values (e.g. send to server)
-  alert(`Durian ID: ${durianId}, Distributor Name: ${distributorNo}`);
-  console.log(`Durian ID: ${durianId}, Distributor Name: ${distributorNo}`);
-
-  // clear input values
-  document.getElementById("durianid-send").value = "";
-  document.getElementById("distributor").value = "";
-});
-
 //Display Durians History
-const durians = [
-  {
-    id: "Durian 1",
-    type: "Musang",
-    weight: "20g",
+getMyDurians().then((data) => {
+  console.log(Array.isArray(data));
+  const durians = data.map((durian) => ({
     image: "assets/img/durian/durian1.jpg",
-    tree: "Tree 1",
-  },
-  {
-    id: "Durian 2",
-    type: "XO",
-    weight: "25g",
-    image: "assets/img/durian/durian2.jpg",
-    tree: "Tree 2",
-  },
-];
+    id: durian[1],
+    type: durian[2],
+    weight: durian[3],
+    tree: durian[5][2],
+  }));
 
-const duriansTable = document.getElementById("durians-table");
+  const duriansTable = document.getElementById("durians-table");
 
-// Clear the existing HTML inside the table
-duriansTable.innerHTML = "";
+  // Clear the existing HTML inside the table
+  duriansTable.innerHTML = "";
 
-// Loop through the durians array and generate HTML for each durian detail
-durians.forEach((durian) => {
-  const durianHTML = `
+  // Loop through the durians array and generate HTML for each durian detail
+  durians.forEach((durian) => {
+    const durianHTML = `
     <tr>
       <td>
         <div class="d-flex px-2 py-1">
@@ -103,7 +76,7 @@ durians.forEach((durian) => {
         <p class="text-xs mb-0 prod-pText">${durian.type}</p>
       </td>
       <td class="align-left text-center text-sm">
-        <p class="text-xs mb-0 prod-pText">${durian.weight}</p>
+        <p class="text-xs mb-0 prod-pText">${durian.weight}g</p>
       </td>
       <td class="align-left text-center text-sm">
         <p class="text-xs mb-0 prod-pText">${durian.tree}</p>
@@ -111,6 +84,7 @@ durians.forEach((durian) => {
     </tr>
   `;
 
-  // Append the HTML for this durian to the table
-  duriansTable.insertAdjacentHTML("beforeend", durianHTML);
+    // Append the HTML for this durian to the table
+    duriansTable.insertAdjacentHTML("beforeend", durianHTML);
+  });
 });
