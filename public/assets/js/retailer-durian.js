@@ -1,3 +1,6 @@
+// Set Current Retailer Name
+const currentAd = sessionStorage.getItem("accAddr");
+
 // Set Current Retailer Name 
 const retailer_connect = document.querySelector('.retailer-connect');
 const retailer_name = "Retailer: Rizky Durian";

@@ -208,7 +208,7 @@
         <h2>Tag | Add NEW DURIAN</h2>
         <a class="close-popup" href="#">&times;</a>
         <div class="popup-content">
-            <form onsubmit="harvestDurian()" class="form-popup">    
+            <form onsubmit="addDurian()" class="form-popup">    
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="durianid">Durian ID</label>
@@ -219,7 +219,7 @@
                         <input type="text" class="form-control" id="duriantype" placeholder="Durian type..." name="duriantype" required>
                     </div>    
                     <div class="col-md-4">
-                        <label for="weight">Durian Weight</label>
+                        <label for="weight">Durian Weight (In Gram)</label>
                         <input type="number" class="form-control" id="weight" value="0" min="0" step="0.01" name="weight" required>
                     </div>
                   <div class="col-md-4">

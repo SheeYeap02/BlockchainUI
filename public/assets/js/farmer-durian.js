@@ -61,6 +61,8 @@ form.addEventListener("submit", function (event) {
   document.getElementById("distributor").value = "";
 });
 
+
+
 //Display Durians History
 const durians = [
   {
