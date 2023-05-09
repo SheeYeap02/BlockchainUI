@@ -8,55 +8,56 @@
 //   }
 // };
 
+// const currentAd = sessionStorage.getItem("accAddr");
+
+// const checkCurRole = async() => {
+// 	// Get all registered users 
+// 	const farms =  await window.contract.methods.getAllFarms().call();
+// 	const distributors =  await window.contract.methods.getAllDistributors().call();
+// 	const retailers = await window.contract.methods.getAllRetailers().call();
+// 	console.log(farms);
+// 	console.log(distributors);
+// 	console.log(retailers);
+
+	
+
+// 	const curRole = null; 
+// 	// Check if the current is farm
+// 	for(let i = 0; i < farms.length; i++) {
+// 		if(farms[i].address === currentAd) {
+// 			curRole = "F";
+// 			break;
+// 		}
+// 	}
+// 	// if is farmer then skip this
+// 	if(curRole === null) {
+// 		// Check if the current is distributor
+// 		for (let j = 0; j < distributors.length; j++) {
+// 			if(distributors[i].address === currentAd) {
+// 				curRole = "D";
+// 				break;
+// 			}
+// 		}
+// 		// if is distributor then skip this
+// 		if(curRole === null) {
+// 			// Check if the current is retailer
+// 			for (let k = 0; k < retailers.length; k++) {
+// 				curRole = "R";
+// 				break;
+// 			}
+// 		}
+// 	}
+// 	sessionStorage.setItem("currentRole", curRole);
+
+// };
+
+// checkCurRole();
+
+	
+
 //2- connect to smart contract
 const accessToContract = async () => {
   const ABI = [
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "retailer",
-				"type": "address"
-			},
-			{
-				"internalType": "string",
-				"name": "durianId",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "rateType",
-				"type": "string"
-			},
-			{
-				"internalType": "uint8",
-				"name": "rateScore",
-				"type": "uint8"
-			}
-		],
-		"name": "customerRate",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "retailer",
-				"type": "address"
-			},
-			{
-				"internalType": "string",
-				"name": "durianId",
-				"type": "string"
-			}
-		],
-		"name": "distributeDurianToRetail",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
 	{
 		"inputs": [],
 		"name": "DurianNotExist",
@@ -68,65 +69,6 @@ const accessToContract = async () => {
 		"type": "error"
 	},
 	{
-		"inputs": [
-			{
-				"internalType": "string",
-				"name": "durianId",
-				"type": "string"
-			}
-		],
-		"name": "durianReceived_Distributor",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "string",
-				"name": "durianId",
-				"type": "string"
-			},
-			{
-				"internalType": "uint8",
-				"name": "sellingPrice",
-				"type": "uint8"
-			}
-		],
-		"name": "durianReceived_Retailer",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint8",
-				"name": "tree",
-				"type": "uint8"
-			},
-			{
-				"internalType": "string",
-				"name": "durianId",
-				"type": "string"
-			},
-			{
-				"internalType": "uint16",
-				"name": "weight",
-				"type": "uint16"
-			},
-			{
-				"internalType": "string",
-				"name": "durianType",
-				"type": "string"
-			}
-		],
-		"name": "harvestDurian",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
 		"inputs": [],
 		"name": "InvalidState",
 		"type": "error"
@@ -135,42 +77,6 @@ const accessToContract = async () => {
 		"inputs": [],
 		"name": "Registered",
 		"type": "error"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "string",
-				"name": "name",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "role",
-				"type": "string"
-			}
-		],
-		"name": "registerRole",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "distributor",
-				"type": "address"
-			},
-			{
-				"internalType": "string",
-				"name": "durianId",
-				"type": "string"
-			}
-		],
-		"name": "sendToDistributor",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
 	},
 	{
 		"inputs": [],
@@ -313,6 +219,52 @@ const accessToContract = async () => {
 	{
 		"inputs": [
 			{
+				"internalType": "address",
+				"name": "retailer",
+				"type": "address"
+			},
+			{
+				"internalType": "string",
+				"name": "durianId",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "rateType",
+				"type": "string"
+			},
+			{
+				"internalType": "uint8",
+				"name": "rateScore",
+				"type": "uint8"
+			}
+		],
+		"name": "customerRate",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "retailer",
+				"type": "address"
+			},
+			{
+				"internalType": "string",
+				"name": "durianId",
+				"type": "string"
+			}
+		],
+		"name": "distributeDurianToRetail",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
 				"internalType": "uint256",
 				"name": "",
 				"type": "uint256"
@@ -346,6 +298,37 @@ const accessToContract = async () => {
 			}
 		],
 		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "durianId",
+				"type": "string"
+			}
+		],
+		"name": "durianReceived_Distributor",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "durianId",
+				"type": "string"
+			},
+			{
+				"internalType": "uint8",
+				"name": "sellingPrice",
+				"type": "uint8"
+			}
+		],
+		"name": "durianReceived_Retailer",
+		"outputs": [],
+		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
@@ -812,6 +795,24 @@ const accessToContract = async () => {
 	},
 	{
 		"inputs": [],
+		"name": "getAllFarms",
+		"outputs": [
+			{
+				"internalType": "address[]",
+				"name": "",
+				"type": "address[]"
+			},
+			{
+				"internalType": "string[]",
+				"name": "",
+				"type": "string[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
 		"name": "getAllRetailers",
 		"outputs": [
 			{
@@ -1037,6 +1038,34 @@ const accessToContract = async () => {
 			}
 		],
 		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint8",
+				"name": "tree",
+				"type": "uint8"
+			},
+			{
+				"internalType": "string",
+				"name": "durianId",
+				"type": "string"
+			},
+			{
+				"internalType": "uint16",
+				"name": "weight",
+				"type": "uint16"
+			},
+			{
+				"internalType": "string",
+				"name": "durianType",
+				"type": "string"
+			}
+		],
+		"name": "harvestDurian",
+		"outputs": [],
+		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
@@ -1314,6 +1343,24 @@ const accessToContract = async () => {
 	{
 		"inputs": [
 			{
+				"internalType": "string",
+				"name": "name",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "role",
+				"type": "string"
+			}
+		],
+		"name": "registerRole",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
 				"internalType": "uint256",
 				"name": "",
 				"type": "uint256"
@@ -1348,10 +1395,28 @@ const accessToContract = async () => {
 		],
 		"stateMutability": "view",
 		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "distributor",
+				"type": "address"
+			},
+			{
+				"internalType": "string",
+				"name": "durianId",
+				"type": "string"
+			}
+		],
+		"name": "sendToDistributor",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
 	}
 ];
 
-  const Address = "0xFb077995a45a3354A16b0f91a62603B95c762F79";
+  const Address = "0xFBF424ff268D2dAfead5D4888412A474cc190063";
   window.web3 = await new Web3(window.ethereum); //how to access to smart contract
   window.contract = await new window.web3.eth.Contract(ABI, Address); //how you create an instance of that contract by using the abi and address
   console.log("connected to smart contract");
@@ -1420,6 +1485,7 @@ const getMyDurians = async () => {
 const getRetailers = async () => {
   const data = await window.contract.methods.getAllRetailers().call();
   console.log(data);
+  return data;
 };
 
 const getDistributors = async () => {
@@ -1430,9 +1496,9 @@ const getDistributors = async () => {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Get Value of Sending to the Distributor
-const form = document.querySelector(".form-send-distributor");
+const formSendDist = document.querySelector(".form-send-distributor");
 
-form.addEventListener("submit", async function (event) {
+formSendDist.addEventListener("submit", async function (event) {
   event.preventDefault(); // prevent form submission
 
   // get input values

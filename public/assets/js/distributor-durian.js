@@ -1,111 +1,133 @@
-// Set Current Retailer Name 
-const distributor_connect = document.querySelector('.distributor-connect');
-const distributor_name = "Distributor: Distributor 1";
-distributor_connect.textContent = distributor_name;
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Get the retailer input field
-const retailerField = document.getElementById('retailer');
-const retailers = [
-  { name: 'Retailer 1', role: 'RETAILER' },
-  { name: 'Retailer 2', role: 'RETAILER' },
-  { name: 'Retailer 3', role: 'RETAILER' },
-  { name: 'Retailer 4', role: 'RETAILER' },
-];
-
-// Create the dropdown list of available retailers
-const retailerOptions = [
-  `<option value="default">Select a retailer...</option>`,
-  ...retailers.map(retailer => `<option value="${retailer.name}">${retailer.name}</option>`)
-].join('');
-const dropdownHTML = `<select class="form-control" id="distributor" name="distributor" required>${retailerOptions}</select>`;
-
-// Set the dropdown list as the innerHTML of the distributor input field
-retailerField.innerHTML = dropdownHTML;
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//Display Durians History
-const durians = [
-  {
-    id: "Durian 1",
-    type: "Musang",
-    weight: "20g",
-    image: "assets/img/durian/durian1.jpg",
-    tree: "Tree 1",
-    farm: "Farm 1",
-    retailer: "Rizky Durian",
-    state: "DISTRIBUTED",
-  },
-  {
-    id: "Durian 2",
-    type: "XO",
-    weight: "25g",
-    image: "assets/img/durian/durian2.jpg",
-    tree: "Tree 2",
-    farm: "Farm 1",
-    retailer: "Tiptop Durian",
-    state: "DISTRIBUTING",
-  },
-  {
-    id: "Durian 3",
-    type: "Red Prawn",
-    weight: "22g",
-    image: "assets/img/durian/durian3.jpg",
-    tree: "Tree 3",
-    farm: "Farm 1",
-    retailer: "D17",
-    state: "CHECKING",
-  },
-];
+// Set Current Distributor Name
+const currentAd = sessionStorage.getItem("accAddr");
 
 const getDistributorName = async () => {
-  const data= await window.contract.methods.getDistributorName(currentAd).call();
+  const data = await window.contract.methods
+    .getDistributorName(currentAd)
+    .call();
   console.log(data);
+  const distributor_name = data;
+  const distributor_connect = document.querySelector(".distributor-connect");
+  distributor_connect.textContent = distributor_name;
+};
+
+getDistributorName();
+
+getRetailers().then((data) => {
+  const retailers = [];
+
+  for (let i = 0; i < data[0].length; i++) {
+    const retailer = {
+      address: data[0][i],
+      name: data[1][i],
+    };
+    retailers.push(retailer);
+  }
+  const retailerField = document.getElementById("retailer");
+  const retailerOptions = [
+    `<option value="default">Select a retailer...</option>`,
+    ...retailers.map(
+      (retailer) => `<option value="${retailer.address}">${retailer.name}</option>`
+    ),
+  ].join("");
+  const dropdownHTML = `<select class="form-control" id="retailer" name="retailer" required>${retailerOptions}</select>`;
+
+  // Set the dropdown list as the innerHTML of the distributor input field
+  retailerField.innerHTML = dropdownHTML;
+});
+
+getRetailers();
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+const getDistributorsMyDurians = async() => {
+  const data = await window.contract.methods.getAllDurians().call();
+  const matchingObjects = [];
+  for (let i = 0; i < data.length; i++) {
+    const obj = data[i];
+    if (obj.distributionInfo.distributorAddress.toLowerCase() === currentAd.toLowerCase()) {
+      // This id has already been processed, add the object to the matching list
+      matchingObjects.push(obj);
+    }
+  }
+  console.log(matchingObjects);
+
+  return matchingObjects;
 }
 
-//Display Durian Table
-const duriansTable = document.getElementById("durians-table");
-// Clear the existing HTML inside the table
-duriansTable.innerHTML = "";
-durians.forEach((durian) => {
-  const durianHTML = `
-    <tr>
-      <td>
-        <div class="d-flex px-2 py-1">
-          <div>
-            <img src="${durian.image}" class="avatar avatar-sm me-3" alt="">
-          </div>
-          <div class="d-flex flex-column justify-content-center">
-            <h6 class="mb-0 font-weight-bold text-sm">ID</h6>
-            <p class="text-xs text-secondary mb-0 p-details durian-name">${durian.id}</p>    
-          </div>
-        </div>
-      </td>
-      <td class="align-left">
-        <p class="text-xs mb-0 prod-pText">${durian.type}</p>
-      </td>
-      <td class="align-left text-center text-sm">
-        <p class="text-xs mb-0 prod-pText">${durian.weight}</p>
-      </td>
-      <td class="align-left text-center text-sm">
-        <p class="text-xs mb-0 prod-pText">${durian.tree}</p>
-      </td>
-      <td class="align-left text-center text-sm">
-        <p class="text-xs mb-0 prod-pText farm-name">${durian.farm}</p>
-      </td>
-      <td class="align-left text-center text-sm" style="text-align: left !important;">
-        <button class="btn btn-lg btn-success btn-receive" type="submit">Approve ?</button>
-      </td>
-      <td class="align-left text-center text-sm">
-        <p class="text-xs mb-0 prod-pText dist-text">${durian.state}</p>
-      </td>
-    </tr>
-  `;
+getDistributorsMyDurians().then((data) => {
+  console.log(Array.isArray(data));
+  console.log(data.length);
+  const durians = data.map((durian) => ({
+    image: "assets/img/durian/durian1.jpg",
+    id: durian[1],
+    type: durian[2],
+    weight: durian[3],
+    tree: durian[5][2],
+    farm: durian[5][0],
+    state: durian[0]
+  }));
 
-  // Append the HTML for this durian to the table
-  duriansTable.insertAdjacentHTML("beforeend", durianHTML);
+  
+  const duriansTable = document.getElementById("durians-table");
+
+  // Clear the existing HTML inside the table
+  duriansTable.innerHTML = "";
+
+  // Loop through the durians array and generate HTML for each durian detail
+  durians.forEach((durian) => {
+    let dState = null;
+    switch(Number(durian.state)) {
+      // Harvested,          // 0
+      // SentToDistributor,  // 1
+      // Distributed,        // 2
+      // RetailerReceived,   // 3
+      // Rated               // 4
+      case 0: dState = "Harvested"; break;
+      case 1: dState = "Received"; break;
+      case 2: dState = "Distributed"; break;
+      case 3: dState = "Received"; break;
+      case 4: dState = "Rated"; break;
+    }
+    
+    const durianHTML = `
+      <tr>
+        <td>
+          <div class="d-flex px-2 py-1">
+            <div>
+              <img src="${durian.image}" class="avatar avatar-sm me-3" alt="">
+            </div>
+            <div class="d-flex flex-column justify-content-center">
+              <h6 class="mb-0 font-weight-bold text-sm">ID</h6>
+              <p class="text-xs text-secondary mb-0 p-details durian-name">${durian.id}</p>    
+            </div>
+          </div>
+        </td>
+        <td class="align-left">
+          <p class="text-xs mb-0 prod-pText">${durian.type}</p>
+        </td>
+        <td class="align-left text-center text-sm">
+          <p class="text-xs mb-0 prod-pText">${durian.weight}</p>
+        </td>
+        <td class="align-left text-center text-sm">
+          <p class="text-xs mb-0 prod-pText">${durian.tree}</p>
+        </td>
+        <td class="align-left text-center text-sm">
+          <p class="text-xs mb-0 prod-pText farm-name">${durian.farm}</p>
+        </td>
+        <td class="align-left text-center text-sm" style="text-align: left !important;">
+          <button class="btn btn-lg btn-success btn-receive" type="submit">Approve ?</button>
+        </td>
+        <td class="align-left text-center text-sm">
+          <p class="text-xs mb-0 prod-pText dist-text">${dState}</p>
+        </td>
+      </tr>
+    `;
+
+    // Append the HTML for this durian to the table
+    duriansTable.insertAdjacentHTML("beforeend", durianHTML);
+  });
 });
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Get Value of Input Sending to the Retailer
@@ -118,21 +140,36 @@ form.addEventListener("submit", function (event) {
   const retailerName = document.getElementById("retailer").value;
 
   // check if durianId and retailerName are present in durians
-  const selectedDurian = durians.find((durian) => durian.id === durianId && durian.retailer === retailerName);
+  const selectedDurian = durians.find(
+    (durian) => durian.id === durianId && durian.retailer === retailerName
+  );
   if (selectedDurian) {
-    const hasDistributed = durians.find((durian) => durian.state == "DISTRIBUTED" && durian.id === durianId && durian.retailer === retailerName);
+    const hasDistributed = durians.find(
+      (durian) =>
+        durian.state == "DISTRIBUTED" &&
+        durian.id === durianId &&
+        durian.retailer === retailerName
+    );
     if (hasDistributed) {
-      alert(`Durian ID: ${durianId} has been distributed to the Retailer Name: ${retailerName}.`);
+      alert(
+        `Durian ID: ${durianId} has been distributed to the Retailer Name: ${retailerName}.`
+      );
     } else {
-      alert(`Durian ID: ${durianId}, Retailer Name: ${retailerName} found in durians and its state will change to 'Distributed'.`);
+      alert(
+        `Durian ID: ${durianId}, Retailer Name: ${retailerName} found in durians and its state will change to 'Distributed'.`
+      );
     }
   } else {
-    alert(`Durian ID: ${durianId}, Retailer Name: ${retailerName} not found in durians.`);
+    alert(
+      `Durian ID: ${durianId}, Retailer Name: ${retailerName} not found in durians.`
+    );
   }
 
   // update state of the respective row in the table
   // find index of durian object with specified id
-  const durianIndex = durians.findIndex((durian) => durian.id === durianId && durian.retailer === retailerName) ;
+  const durianIndex = durians.findIndex(
+    (durian) => durian.id === durianId && durian.retailer === retailerName
+  );
   alert(`${durians[durianIndex].state}`);
   if (durianIndex !== -1) {
     durians[durianIndex].state = "DISTRIBUTED";
@@ -175,7 +212,7 @@ const buttons_style = document.querySelectorAll(".btn-receive");
 buttons_style.forEach((button) => {
   const rowState = button.closest("tr").querySelector(".dist-text").textContent;
 
-  if (rowState === "DISTRIBUTED" || rowState === "DISTRIBUTING") {
+  if (rowState === "DISTRIBUTED" || rowState === "HARVESTED") {
     button.textContent = "Received";
     button.classList.remove("btn-success");
     button.classList.add("btn-secondary");
@@ -189,6 +226,7 @@ buttons_style.forEach((button) => {
 const receiveButtons = document.querySelectorAll(".btn-receive");
 receiveButtons.forEach((button) => {
   button.addEventListener("click", function () {
+    alert("hello");
     // get the durian name from the row data
     const durianName =
       this.closest("tr").querySelector(".durian-name").textContent;
